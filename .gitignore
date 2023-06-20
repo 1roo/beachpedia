@@ -20,6 +20,7 @@ local.properties
 .springBeans
 target/
 */target/*
+.idea
 
 # External tool builders
 .externalToolBuilders/
