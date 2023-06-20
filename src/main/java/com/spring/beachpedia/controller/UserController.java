@@ -64,10 +64,10 @@ public class UserController {
 		return "redirect:/user/login";
 	}
 	
-	// 수정 요청
+	// 닉네임수정 요청
 	@GetMapping("/update")
 	public String updateUser(UserVO vo, Model model, HttpSession session, HttpServletRequest request) {
-		service.updateUser(vo);
+		service.updateUserNick(vo);
 		session.invalidate();
 		HttpSession newSession = request.getSession(true);
 		UserVO updateUser = service.login(vo.getUserId(), vo.getUserPw());

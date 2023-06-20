@@ -21,8 +21,8 @@ public interface IUserService {
 	//회원 정보 얻기
 	UserVO getInfo(String userId, PageVO vo);
 
-	//회원 정보 수정
-	void updateUser(UserVO vo);
+	//회원 닉네임 수정
+	void updateUserNick(UserVO vo);
 	
 	//회원탈퇴
 	void deleteUser(UserVO vo) throws Exception;
