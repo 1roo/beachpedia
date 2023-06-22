@@ -39,6 +39,10 @@
 		그 인터페이스가 존재하는 패키지의 경로를 탐색하라는 태그입니다.
 	 -->
 	<mybatis-spring:scan base-package="com.spring.beachpedia.user.mapper"/>
+	<mybatis-spring:scan base-package="com.spring.beachpedia.blog.mapper"/>
+	<mybatis-spring:scan base-package="com.spring.beachpedia.like.mapper"/>
+	
+	
 	
 	
 </beans>

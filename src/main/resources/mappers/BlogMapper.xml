@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    
+<mapper namespace = "com.spring.beachpedia.blog.mapper.IBlogMapper">
+
+	<!-- 블로그 등록 -->
+	<insert id = "regist">
+		INSERT INTO blogs
+			(beach_code, writer, title, content, file_name, upload_path)
+		VALUES (#{beachCode}, #{writer}, #{title}, #{content}, #{fileName}, #{uploadPath})
+	</insert>
+
+	<!-- 블로그 리스트 가져오기 -->
+	<select id = "getList">
+		SELECT b.*, (SELECT COUNT(*) FROM like l WHERE b.blog_no = l.blog_no) AS likeCount
+		FROM blogs b
+		ORDER BY b.blog_no DESC
+		LIMIT #{pageStart}, #{cpp}
+	</select>
+	
+	<!-- 블로그 상세보기 -->
+	<select id = "getArticle" resultType = "party">
+		SELECT b.*, (SELECT COUNT(*) FROM like l WHERE b.blog_no = l.blog_no) AS likeCount
+		FROM blogs b
+		WHERE b.blog_no = #{blogNo}
+	</select>
+
+	<!-- 블로그 삭제 -->
+	<delete id = "delete">
+		DELETE FROM blogs
+		WHERE blog_no = #{blogNo}
+		AND user_id = #{userId}
+	</delete>
+	
+	<!-- 리스트 홈화면으로 -->
+	<select id = "getListHome" resultType = "blog">
+		SELECT b.*, (SELECT COUNT(*) FROM like l WHERE b.blog_no = l.blog_no) AS likeCount
+		FROM blogs b
+		ORDER BY likeCount DESC
+		LIMIT 0, 5
+	</select>
+	
+</mapper>

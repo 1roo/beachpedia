@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace = "com.spring.peachpedia.like.mapper.ILikeMapper">
+
+	<!-- 좋아요 눌림 -->
+	<insert id = "insertLike">
+		INSERT INTO like (blog_no, user_id)
+		VALUES (#{blogNo), #{userId})
+	</insert>
+	
+	<!-- 좋아요 취소 -->
+	<delete id = "deleteLike">
+		DELETE FROM like
+		WHERE blog_no = #{blogNo}
+		AND user_id = #{userId}
+	</delete>
+
+</mapper>

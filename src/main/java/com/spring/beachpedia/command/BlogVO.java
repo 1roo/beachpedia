@@ -7,7 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /*
-	CREATE TABLE blog (
+	CREATE TABLE blogs (
 	    blog_no INT PRIMARY KEY AUTO_INCREMENT,
 		beach_code INT NOT NULL,
 	    writer VARCHAR(50) NOT NULL,
@@ -16,7 +16,7 @@ import lombok.ToString;
 	    reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
 	    file_name VARCHAR(200) NOT NULL,
 	    upload_path VARCHAR(50),
-	    like_num INT DEFAULT 0
+	    like_count INT DEFAULT 0
 	);
 */
 
@@ -26,7 +26,7 @@ import lombok.ToString;
 @ToString
 public class BlogVO {
 	
-	private int blogNo, beachCode, likeNum;
+	private int blogNo, beachCode, likeCount;
 	private String writer, title, content, fileName, uploadPath;
 	private LocalDateTime regDate;
 
