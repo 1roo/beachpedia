@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.beachpedia.myweb">
+	<logger name="com.pedia.beach">
 		<level value="info" />
 	</logger>
 	
