@@ -6,6 +6,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,8 @@ public class MailSenderService {
 	@Autowired
 	private JavaMailSender mailSender;
 	private int authNum;
+	@Value("${email.account}") // email.properties의 계정명을 불러와서 사용
+	private String emailSender; //email-config에 설정한 발신용 이메일 주소 입력.
 
 	// 난수 발생
 	public int makeRandomNumber() {
@@ -32,7 +35,7 @@ public class MailSenderService {
 	// 회원 가입시 사용할 이메일 양식
 	public String joinEmail(String email) {
 		authNum = makeRandomNumber();
-		String setFrom = "yeoreobap@naver.com"; // email-config에서 설정한 발신용 이메일 주소
+		String setFrom = emailSender; // email-config에서 설정한 발신용 이메일 주소
 		String toMail = email; // 수신받을 이메일(가입하고자 하는 사람의 이메일)
 		String title = "회원 가입 인증 이메일입니다."; // 이메일 제목
 		String content = "여러밥에 가입해 주셔서 감사합니다."

@@ -27,31 +27,31 @@ public class UserController {
 
 	@Autowired
 	private IUserService service;
-	
-	@Autowired
-	private MailSenderService mailService;
-	
-	
+
+//	@Autowired
+//	private MailSenderService mailService;
+
+
 	// 회원가입 페이지로 이동
 	@GetMapping("/join")
-	public void userJoin() {
-		
+	public void join() {
+
 	}
-	
+
 	// 아이디 중복 확인(비동기)
 	@ResponseBody
 	@PostMapping("/idCheck")
 	public String idCheck(@RequestBody String userId) {
 		return null;
 	}
-	
+
 	// 이메일인증
 	@ResponseBody
 	@GetMapping("/mailCheck")
 	public String mailCheck(String email) {
 		return null;
 	}
-	
+
 	// 회원가입 처리
 	@PostMapping("/join")
 	public String join(UserVO vo, RedirectAttributes ra) {
@@ -61,7 +61,7 @@ public class UserController {
 		ra.addFlashAttribute("msg", "joinSuccess");
 		return "redirect:/user/login";
 	}
-	
+
 	// 수정 요청
 	@GetMapping("/update")
 	public String updateUser(UserVO vo, Model model, HttpSession session, HttpServletRequest request) {
@@ -72,22 +72,22 @@ public class UserController {
 		newSession.setAttribute("user", updateUser);
 		return "redirect:/";
 	}
-	
+
 	// 로그인 페이지로 이동 요청
 	@GetMapping("/login")
 	public String login(Model model, HttpSession session) {
 		session.removeAttribute("user");
 		return "user/login";
 	}
-	
+
 	// 로그인
 	@PostMapping("/login")
 	public void login(String userId, String userPw, Model model) {
 		log.info("로그인 요청");
 		model.addAttribute("user", service.login(userId, userPw));
 	}
-	
-	// 마이페이지 
+
+	// 마이페이지
 	@GetMapping("/mypage")
 	public void userMypage(HttpSession session, Model model, PageVO vo) {
 		UserVO user = (UserVO) session.getAttribute("userInfo");
@@ -95,8 +95,8 @@ public class UserController {
 		vo.setLoginId(id);
 		model.addAttribute("user", service.getInfo(id, vo));
 	}
-	
-	
+
+
 	// 로그아웃
 	@RequestMapping("/logout")
 	public ModelAndView logout(HttpSession session) {
@@ -104,7 +104,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("redirect:/");
 		return mv;
 	}
-	
+
 	// 회원탈퇴
 	@PostMapping("/delete")
 	public String deleteUser(UserVO vo, HttpSession session, Model model) throws Exception {
@@ -113,7 +113,7 @@ public class UserController {
 		session.invalidate();
 		return "redirect:/";
 	}
-	
-	
-	
+
+
+
 }

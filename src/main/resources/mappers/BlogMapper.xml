@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    
+    <mapper namespace="com.pedia.beach.blog.mapper.IBlogMapper">
+    
+    	<insert id = "regist">
+	    	INSERT INTO blogs 
+	    	(beach_no, writer, comment, upload_path, file_name)
+	    	VALUES (#{beachNo}, #{writer}, #{comment}, #{uploadPath}, #{fileName})
+   		</insert>
+
+    </mapper>

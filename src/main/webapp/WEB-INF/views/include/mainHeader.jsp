@@ -26,12 +26,11 @@
 
 <div class="container">
     <header class="header">
-	
-	      <a href="/">
-	      	<img class="common-logo" src="${pageContext.request.contextPath}/resources/img/logo.png" alt="BEACHPEDIA_LOGO">
-	      </a>
-	      <span class="page-title">로그인</span>
-	
+      <a href="/">
+      	<img class="logo default" src="${pageContext.request.contextPath}/resources/img/longlogo.png" alt="BEACHPEDIA_LOGO">
+      	<img class="logo show" src="${pageContext.request.contextPath}/resources/img/logo.png" alt="BEACHPEDIA_LOGO">
+      </a>
+
       <ul class="user-log">
         <li class="login"><a href="/user/login">로그인</a></li>
         <li class="join"><a href="/user/join">회원가입</a></li>

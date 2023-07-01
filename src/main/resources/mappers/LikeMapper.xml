@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.pedia.beach.like.mapper.ILikeMapper">
+
+	<insert id="insertLike">
+		INSERT INTO likes (blog_no, user_id)
+		VALUES (#{blogNo}, #{userId})
+	</insert>
+	
+	<delete id="deleteLike">
+		DELETE FROM likes
+		WHERE blog_no = #{blogNo} AND user_id = #{userId}
+	</delete>
+
+</mapper>

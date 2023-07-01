@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.pedia.beach.user.mapper.IUserMapper">
+    
+    	<resultMap type="user" id="userMap">
+    		<result property="userId" column="user_id" />
+    		<result property="userPw" column="user_pw" />
+			<result property="userName" column="user_name" />
+			<result property="userNick" column="user_nick" />
+			<result property="userEmail1" column="user_email1" />
+			<result property="userEmail2" column="user_email2" />
+		</resultMap>
+    
+    	<!-- 회원가입 -->
+    	<insert id="join">
+    		INSERT INTO users
+    		(user_id, user_pw, user_name, user_email1, user_email2)
+    		VALUES(#{userId}, #{userPw}, #{userName}, #{userEmail1}, #{userEmail2})
+    	</insert>
+    	
+    	<!-- ID 체크 -->
+    	<select id="idCheck" resultType="int">
+    		SELECT COUNT(*)
+    		FROM users
+    		WHERE user_id = #{userId}
+    	</select>
+    	
+ 		<!-- 로그인 -->
+ 		<select id="login" resultType="string">
+ 			SELECT user_pw FROM users
+ 			WHERE user_id = #{userId}
+ 		</select>
+ 		
+ 		<select id="getUser" resultType="user">
+		SELECT user_id, user_name, user_nick,
+			user_email1, user_email2
+		 FROM users WHERE user_id = #{userId}
+	</select>
+ 		
+ 		
+ 		<!-- 유저정보 가져오기 -->
+ 		<select id="getInfo" resultMap="userMap">
+ 			SELECT user_name, user_nick, user_email1, user_email2
+ 			FROM users u
+ 			WEHRE u.user_id = #{userId}
+ 		
+ 		</select>
+    
+    
+    
+    </mapper>

@@ -10,7 +10,7 @@ li {
 }
 
 
-/* header.jsp */
+/* mainHeader.jsp */
 header.header {
 	border: 1px solid red;
 	height:100px;
@@ -36,6 +36,10 @@ header.header {
 	.header a {
 		margin: 0;
 	}
+	.page-title{
+	display: none;
+}
+
 }
 
 @media (max-width: 500px) {
@@ -45,6 +49,21 @@ header.header {
 	.header a .default{
 		display: none;
 	}
+}
+
+/* header.jsp */
+.common-logo {
+	width: 100px;
+	vertical-align: none;
+	position: absolute;
+	left: 100px;
+}
+
+.page-title {
+	position: absolute;
+	left: 50%;
+	font-weight: bold;
+	font-size: 35px;
 }
 
 
@@ -63,5 +82,18 @@ header.header {
 .user-log li a {
 	text-decoration: none;
 	font-size: 20px;
+}
+
+.form-signin {
+    max-width: 400px;
+    padding: 100px 15px 200px;
+}
+
+.form-control {
+	margin: 20px 0;
+}
+
+.btn.loginBtn {
+	margin-top: 50px;
 }
 
