@@ -6,7 +6,7 @@
 <title>BEACHPEDIA</title>
 
 <main class="login-bar form-signin m-auto">
-	<form action="${pageContext.request.contextPath}/user/login}" method="post" name="loginForm">
+	<form action="${pageContext.request.contextPath}/user/login}" method="POST" name="loginForm">
     <div class="form-floating">
       <input type="text" class="form-control" id="userId" placeholder="아이디">
       <label for="floatingInput">아이디</label>
@@ -60,5 +60,6 @@
     }
   }
 
+  
 
 </script>

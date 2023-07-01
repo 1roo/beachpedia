@@ -30,7 +30,7 @@
 	      <a href="/">
 	      	<img class="common-logo" src="${pageContext.request.contextPath}/resources/img/logo.png" alt="BEACHPEDIA_LOGO">
 	      </a>
-	      <span class="page-title">로그인</span>
+	      <span class="page-title" id="pageTitle">로그인</span>
 	
       <ul class="user-log">
         <li class="login"><a href="/user/login">로그인</a></li>

@@ -1,0 +1,64 @@
+.join-container {
+    width: 60%;
+    margin: 100px auto;
+}
+
+
+.idCheckBtn. .emailCheckBtn {
+	height: 50px;
+}
+
+input.form-control {
+	margin: 0;
+}
+
+.box {
+	display: flex;
+}
+
+.email-border {
+	display: flex;
+	margin-bottom: 10px;
+}
+
+.email-border p {
+	line-height: 50px;
+	margin-bottom: 0;
+	margin-right: 10px;
+}
+
+.email-border input {
+	margin-right: 10px;
+}
+
+#emailVerification{
+	margin: 0;
+}
+
+.btns {
+	display: flex;
+	justify-content: center;
+}
+
+.btn {
+	border: 1px solid gray;
+	margin: 0 10px;
+}
+
+.joinBtn {
+	background: rgb(143, 143, 235);
+    color: white;
+}
+
+.joinBtn:hover {
+    background-color: blue;
+    color: white;
+}
+
+.exitBtn {
+    background-color: rgb(240, 240, 240);
+}
+
+.exitBtn:hover {
+    background-color: gainsboro;
+}
