@@ -32,8 +32,14 @@
       </a>
 
       <ul class="user-log">
-        <li class="login"><a href="/user/login">로그인</a></li>
-        <li class="join"><a href="/user/join">회원가입</a></li>
+        <c:if test="${loginId == null}">
+			<li class="login"><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
+			<li class="join"><a href="${pageContext.request.contextPath}/user/join">회원가입</a></li>
+		</c:if>
+		<c:if test="${loginId != null}">
+			<li class="mypage"><a href="${pageContext.request.contextPath}/user/mypage">마이페이지</a></li>
+			<li class="logout"><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
+		</c:if>
       </ul>
     </header>
 </div>

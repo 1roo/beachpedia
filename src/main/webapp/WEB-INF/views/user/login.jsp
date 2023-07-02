@@ -6,17 +6,17 @@
 <title>BEACHPEDIA</title>
 
 <main class="login-bar form-signin m-auto">
-	<form action="${pageContext.request.contextPath}/user/login}" method="POST" name="loginForm">
+	<form action="${pageContext.request.contextPath}/user/login" method="POST" name="loginForm">
     <div class="form-floating">
-      <input type="text" class="form-control" id="userId" placeholder="아이디">
+      <input type="text" class="form-control" id="userId" name="userId" placeholder="아이디">
       <label for="floatingInput">아이디</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="userPw" placeholder="Password">
+      <input type="password" class="form-control" id="userPw" name="userPw" placeholder="Password">
       <label for="floatingPassword">비밀번호</label>
     </div>
 
-    <button class="w-100 btn btn-lg btn-primary loginBtn" name="loginForm" id="loginBtn" type="submit">로그인</button>
+    <button class="w-100 btn btn-lg btn-primary loginBtn" name="loginForm" id="loginBtn" type="button">로그인</button>
   </form>
 </main>
 
@@ -30,6 +30,9 @@
 <%@ include file="../include/footer.jsp" %>
 
 <script>
+	document.getElementById('pageTitle').textContent = '로그인';
+  	document.getElementById('login').style.display = 'none';
+	
 
 	document.getElementById('loginBtn').onclick = () => {
     const $userId = document.getElementById('userId');
@@ -50,15 +53,16 @@
     document.loginForm.submit();
 
   }
-
+	
 
   //엔터키로 진행 되게 설정
-  function EnterLogin() {
-    var keyCode = window.event.keyCode;
-    if(keyCode == 13) {
-      document.getElementById('loginBtn').click();
-    }
-  }
+  const $userPw = document.getElementById('userPw');
+  $userPw.addEventListener('keydown', function(e) {
+	  if (e.keyCode === 13) {
+		  event.preventDefault();
+		  document.getElementById('loginBtn').click();
+	  }
+	});
 
   
 

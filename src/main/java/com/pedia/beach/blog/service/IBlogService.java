@@ -16,15 +16,19 @@ public interface IBlogService {
 	List<BlogVO> getList(PageVO paging);
 	
 	//상세보기
-	BlogVO getArticle(int blogNo, String userId);
+	BlogVO getArticle(int blogNo);
 	
 	//수정
 	void update(BlogVO vo);
 	
 	//삭제
 	void delete(int blogNo);
+
 	
 	//홈화면 리스트
 	List<BlogVO> getListHome();
+
+	//총 게시물 수 구하기
+	int getTotal(PageVO vo);
 	
 }

@@ -38,7 +38,7 @@ public class MailSenderService {
 		String setFrom = emailSender; // email-config에서 설정한 발신용 이메일 주소
 		String toMail = email; // 수신받을 이메일(가입하고자 하는 사람의 이메일)
 		String title = "회원 가입 인증 이메일입니다."; // 이메일 제목
-		String content = "여러밥에 가입해 주셔서 감사합니다."
+		String content = "BEACHPEDIA에 가입해 주셔서 감사합니다."
 				+ "<br><br>"
 				+ "인증 번호는 <strong>" + authNum + "</strong> 입니다."
 				+ "<br>"
@@ -51,8 +51,8 @@ public class MailSenderService {
 	// 이메일 전송 메서드
 	private void mailSend(String setFrom, String toMail, String title, String content) {
 		try {
-			MimeMessage mmm = mailSender.createMimeMessage();
-			MimeMessageHelper helper = new MimeMessageHelper(mmm, true, "utf-8");
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
 
 			helper.setFrom(setFrom);
 			helper.setTo(toMail);
@@ -61,7 +61,7 @@ public class MailSenderService {
 			// true : html 형식으로 전송, 값을 안주면 단순 텍스트로 전달
 
 			// 메일 전송
-			mailSender.send(mmm);
+			mailSender.send(message);
 
 		} catch (MessagingException e) {
 			e.printStackTrace();

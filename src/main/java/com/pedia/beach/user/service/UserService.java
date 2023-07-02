@@ -33,22 +33,23 @@ public class UserService implements IUserService {
 		log.info("암호화 후 비번: " + securePw);
 		vo.setUserPw(securePw);
 		mapper.join(vo);
-
 	}
 
 	@Override
-	public UserVO login(String userId, String userPw) {
+	public String login(String userId, String userPw) {
 		log.info("로그인 요청이 들어옴");
 		if(userPw != null) {
 			String dbPw = mapper.login(userId);
 			if(dbPw != null) {
 				if(encoder.matches(userPw, dbPw)) {
-					return mapper.getUser(userId);
+					return userId;
 				}
 			}
 		}
 		return null;
 	}
+	
+	
 
 	@Override
 	public UserVO getInfo(String userId, PageVO vo) {
@@ -66,5 +67,7 @@ public class UserService implements IUserService {
 		mapper.deleteUser(vo);
 
 	}
+
+	
 
 }

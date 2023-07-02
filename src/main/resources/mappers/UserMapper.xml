@@ -11,8 +11,16 @@
 			<result property="userNick" column="user_nick" />
 			<result property="userEmail1" column="user_email1" />
 			<result property="userEmail2" column="user_email2" />
+			<collection property="blogList" resultMap="list"/>
 		</resultMap>
-    
+		
+		<!-- collection에 들어갈 객체가 어떤 식으로 포장 될 지를 명시해 주는 resultMap -->
+		<resultMap type="blog" id="list">
+			<id property="blogNo" column="blog_no" />
+			<result property="comment" column="comment" />
+			<result property="regDate" column="reg_date" />
+		</resultMap>
+		
     	<!-- 회원가입 -->
     	<insert id="join">
     		INSERT INTO users
@@ -36,18 +44,20 @@
  		<select id="getUser" resultType="user">
 		SELECT user_id, user_name, user_nick,
 			user_email1, user_email2
-		 FROM users WHERE user_id = #{userId}
-	</select>
- 		
+		 FROM users 
+		 WHERE user_id = #{userId}
+		</select>
  		
  		<!-- 유저정보 가져오기 -->
  		<select id="getInfo" resultMap="userMap">
- 			SELECT user_name, user_nick, user_email1, user_email2
+ 			SELECT u.user_id, user_name, user_nick, user_email1, user_email2, b.blog_no, b.comment, b.reg_date
  			FROM users u
- 			WEHRE u.user_id = #{userId}
- 		
+ 			LEFT JOIN blogs b
+ 			ON u.user_id = b.writer
+ 			WHERE u.user_id = #{userId}
+ 			ORDER BY b.blog_no DESC
+ 			LIMIT #{paging.pageStart}, #{paging.cpp}
  		</select>
-    
-    
+   
     
     </mapper>

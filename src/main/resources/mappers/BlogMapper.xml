@@ -11,4 +11,18 @@
 	    	VALUES (#{beachNo}, #{writer}, #{comment}, #{uploadPath}, #{fileName})
    		</insert>
 
+		<select id="getList" resultType="blog">
+			SELECT b.*, (SELECT COUNT(*) FROM likes l
+				WHERE b.blog_no = l.blog_no) AS likeCount
+			FROM blogs b
+			ORDER BY blog_no DESC
+			LIMIT #{pageStart}, #{cpp}
+		</select>
+	
+	
+		<select id="getTotal" resultType="int">
+			SELECT COUNT(*) FROM blogs
+		</select>
+	
+	
     </mapper>

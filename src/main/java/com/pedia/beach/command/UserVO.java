@@ -1,6 +1,7 @@
 package com.pedia.beach.command;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,4 +30,6 @@ public class UserVO {
 	private String userId, userPw, userName, userNick, userEmail1, userEmail2;
 	private LocalDateTime regDate;
 
+	private List<BlogVO> blogList;
+	
 }

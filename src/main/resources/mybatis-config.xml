@@ -22,7 +22,7 @@
 
 	<typeAliases>
 		<typeAlias type="com.pedia.beach.command.UserVO" alias="user" />
-
+		<typeAlias type="com.pedia.beach.command.BlogVO" alias="blog"/>
 	</typeAliases>
 	
 	

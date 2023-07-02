@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="../include/header.jsp"%>
 <!-- style.css -->
-	<link href="${pageContext.request.contextPath}/resources/css/join.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/join.css" rel="stylesheet">
 
 <title>BEACHPEDIA</title>
 
@@ -107,9 +107,19 @@
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
+
+
+<%@ include file="../include/footer.jsp"%>
+
+
+
 <script>
-	const $title = document.getElementById('pageTitle');
-	$title.textContent = '회원가입';
+	document.getElementById('pageTitle').textContent = '회원가입';
+	document.getElementById('join').style.display = 'none';
 	
 	let code = '';
 	let idFlag, pwFlag;
@@ -118,7 +128,7 @@
 	document.getElementById("userId").onkeyup = function () {
 		var regex = /^[A-Za-z0-9+]{4,12}$/;
 		const $userId = document.getElementById('userId');
-		document.getElementById('idInvalidMsg').textContent = '부적합한 아이디입니다.'';
+		document.getElementById('idInvalidMsg').textContent = '부적합한 아이디입니다.';
 
 		if (regex.test($userId.value)) {
 			$userId.classList.remove('is-invalid');
@@ -156,16 +166,16 @@
 			.then(data => {
 				const $userId = document.getElementById('userId');
 				console.log('data : ' + data);
-				if (data === 'available') {
+				if (data === 'ok') {
 					$userId.style.color = '#198754';
 					$userId.setAttribute('readonly', true);
 					document.getElementById('idCheckBtn').disabled = true;
-					document.getElementById('idValidMsg').textContent = '사용 가능한 아이디입니다. :)';
+					document.getElementById('idValidMsg').textContent = '사용 가능한 아이디입니다.';
 				} else {
 					$userId.classList.remove('is-valid');
 					$userId.classList.add('is-invalid');
 					document.getElementById('idValidMsg').style.display = 'none';
-					document.getElementById('idInvalidMsg').textContent = '중복되는 아이디입니다. :(';
+					document.getElementById('idInvalidMsg').textContent = '중복되는 아이디입니다.';
 					document.getElementById('idInvalidMsg').style.display = 'block';
 					$userId.value = '';
 					$userId.focus();
@@ -286,6 +296,8 @@
 		}
 	});
 	
+	
+	// 폼 데이터 검증
 	document.getElementById('joinBtn').onclick = function () {
 
 		if (idFlag && pwFlag) {
@@ -308,7 +320,7 @@
 			}
 
 			if (!document.getElementById('emailCheckBtn').disabled) {
-				alert('이메일 인증을 완료해주세요');
+				alert('이메일 인증을 완료하세요');
 				document.getElementById('emailCheck').focus();
 				return;
 			}
@@ -319,7 +331,7 @@
 			} else return;
 
 		} else {
-			alert('입력값을 다시 한 번 확인하세요.';
+			alert('입력값을 다시 한 번 확인하세요.');
 		}
 	}
 
@@ -331,21 +343,4 @@
 
 
 
-
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-	integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-	integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-	crossorigin="anonymous"></script>
-
-
-
-<%@ include file="../include/footer.jsp"%>
 

@@ -9,7 +9,7 @@
 	<!-- web.xml에 초기 설정 파일로 이 파일을 추가 -->
 	
 	<bean id="userLoginSuccessHandler" class="com.pedia.beach.util.interceptor.UserLoginSuccessHandler" />
-	<bean id="userAuth" class="com.pedia.beach.util.interceptor.UserAuthHandler"/>
+<!-- 	<bean id="userAuth" class="com.pedia.beach.util.interceptor.UserAuthHandler"/> -->
 	
 	<mvc:interceptors>
 	

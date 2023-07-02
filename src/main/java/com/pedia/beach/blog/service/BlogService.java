@@ -65,32 +65,35 @@ public class BlogService implements IBlogService {
 
 	@Override
 	public List<BlogVO> getList(PageVO paging) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.getList(paging);
 	}
 
 	@Override
-	public BlogVO getArticle(int blogNo, String userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public BlogVO getArticle(int blogNo) {
+		return mapper.getArticle(blogNo);
 	}
 
 	@Override
 	public void update(BlogVO vo) {
-		// TODO Auto-generated method stub
+		mapper.update(vo);
 		
 	}
 
 	@Override
 	public void delete(int blogNo) {
-		// TODO Auto-generated method stub
+		mapper.delete(blogNo);
 		
 	}
 
 	@Override
 	public List<BlogVO> getListHome() {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.getListHome();
 	}
+
+	@Override
+	public int getTotal(PageVO vo) {
+		return mapper.getTotal(vo);
+	}
+
 
 }

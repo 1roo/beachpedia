@@ -1,5 +1,5 @@
 .join-container {
-    width: 60%;
+    width: 50%;
     margin: 100px auto;
 }
 
@@ -42,7 +42,7 @@ input.form-control {
 
 .btn {
 	border: 1px solid gray;
-	margin: 0 10px;
+	margin-left: 10px;
 }
 
 .joinBtn {

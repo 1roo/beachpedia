@@ -1,4 +1,5 @@
 package com.pedia.beach.controller;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,9 +14,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.pedia.beach.blog.service.IBlogService;
 import com.pedia.beach.command.UserVO;
 import com.pedia.beach.user.service.IUserService;
+
 import com.pedia.beach.util.MailSenderService;
+import com.pedia.beach.util.PageCreator;
 import com.pedia.beach.util.PageVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,9 +31,12 @@ public class UserController {
 
 	@Autowired
 	private IUserService service;
-
-//	@Autowired
-//	private MailSenderService mailService;
+	
+	@Autowired
+	private IBlogService blogService;
+	
+	@Autowired
+	private MailSenderService mailSender;
 
 
 	// 회원가입 페이지로 이동
@@ -42,14 +49,18 @@ public class UserController {
 	@ResponseBody
 	@PostMapping("/idCheck")
 	public String idCheck(@RequestBody String userId) {
-		return null;
+		log.info("화면단으로부터 전달된 값: " + userId);
+		int result = service.idCheck(userId);
+		if(result == 1) return "duplicated";
+		else return "ok";
 	}
 
 	// 이메일인증
 	@ResponseBody
 	@GetMapping("/mailCheck")
 	public String mailCheck(String email) {
-		return null;
+		log.info("이메일 인증 요청 들어옴: " + email);
+		return mailSender.joinEmail(email);
 	}
 
 	// 회원가입 처리
@@ -64,36 +75,35 @@ public class UserController {
 
 	// 수정 요청
 	@GetMapping("/update")
-	public String updateUser(UserVO vo, Model model, HttpSession session, HttpServletRequest request) {
+	public String update(UserVO vo, RedirectAttributes ra) {
 		service.updateUser(vo);
-		session.invalidate();
-		HttpSession newSession = request.getSession(true);
-		UserVO updateUser = service.login(vo.getUserId(), vo.getUserPw());
-		newSession.setAttribute("user", updateUser);
-		return "redirect:/";
+		ra.addFlashAttribute("msg", "updateSuccess");
+		return "redirect:/user/mypage";
 	}
 
 	// 로그인 페이지로 이동 요청
 	@GetMapping("/login")
 	public String login(Model model, HttpSession session) {
-		session.removeAttribute("user");
+		session.removeAttribute("loginId");
 		return "user/login";
 	}
 
-	// 로그인
+	// 로그인 요청
 	@PostMapping("/login")
 	public void login(String userId, String userPw, Model model) {
 		log.info("로그인 요청");
-		model.addAttribute("user", service.login(userId, userPw));
+		model.addAttribute("loginId", service.login(userId, userPw));
+		log.info(userId + userPw);
 	}
 
 	// 마이페이지
 	@GetMapping("/mypage")
-	public void userMypage(HttpSession session, Model model, PageVO vo) {
-		UserVO user = (UserVO) session.getAttribute("userInfo");
-		String id = user.getUserId();
+	public void mypage(HttpSession session, Model model, PageVO vo) {
+		String id = (String) session.getAttribute("loginId");
 		vo.setLoginId(id);
-		model.addAttribute("user", service.getInfo(id, vo));
+		PageCreator pc = new PageCreator(vo, blogService.getTotal(vo));
+		model.addAttribute("userInfo", service.getInfo(id, vo));
+		model.addAttribute("pc", pc);
 	}
 
 
@@ -104,7 +114,9 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("redirect:/");
 		return mv;
 	}
-
+	
+	
+	
 	// 회원탈퇴
 	@PostMapping("/delete")
 	public String deleteUser(UserVO vo, HttpSession session, Model model) throws Exception {

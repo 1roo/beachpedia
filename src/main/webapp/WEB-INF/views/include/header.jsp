@@ -30,11 +30,18 @@
 	      <a href="/">
 	      	<img class="common-logo" src="${pageContext.request.contextPath}/resources/img/logo.png" alt="BEACHPEDIA_LOGO">
 	      </a>
-	      <span class="page-title" id="pageTitle">로그인</span>
+	      <span class="page-title" id="pageTitle"></span>
 	
-      <ul class="user-log">
-        <li class="login"><a href="/user/login">로그인</a></li>
-        <li class="join"><a href="/user/join">회원가입</a></li>
-      </ul>
+      	<ul class="user-log d-flex flex-wrap align-items-end">
+			<c:if test="${loginId == null}">
+				<li class="login"><a id="login" href="${pageContext.request.contextPath}/user/login">로그인</a></li>
+				<li class="join"><a id="join" href="${pageContext.request.contextPath}/user/join">회원가입</a></li>
+			</c:if>
+			<c:if test="${loginId != null}">
+				<li class="mypage"><a href="${pageContext.request.contextPath}/user/mypage">마이페이지</a></li>
+				<li class="logout"><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
+			</c:if>	
+		</ul>
+
     </header>
 </div>
